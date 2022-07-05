@@ -1,0 +1,35 @@
+{
+  "canisters": {
+    "snake": {
+      "main": "src/snake/main.mo",
+      "type": "motoko"
+    },
+    "snake_assets": {
+      "dependencies": [
+        "snake"
+      ],
+      "frontend": {
+        "entrypoint": "src/snake_assets/src/index.html"
+      },
+      "source": [
+        "src/snake_assets/assets",
+        "dist/snake_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.8.4",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
