@@ -11,6 +11,7 @@
             margin: 0px;
             padding: 0px;
             display: flex;
+            background-color: #1e162e;
              flex-direction: column; /* arrage items on top of the other */
              justify-content: center;
              align-items: center;
@@ -22,8 +23,20 @@
     </style>
  </head>
  <body>
-     <canvas id="game" width="600" height="600"></canvas>
-      <div class="reloader"><div class="restart" id="restart" onclick="reloadSnake();">Retry!</div></div>
-     <script src="index.js"></script>
+    <header>
+        <div class="headerBrand" href="#">
+            <img src="./logo2.png" alt="" />
+        </div>
+        <div class="headerBrand2"  href="#">
+            <img src="./logo2.png" alt="" />
+        </div>
+        <div class="headerBrand3"  href="#">
+            <div class="restart" id="restart" onclick="reloadSnake();">Retry!</div>
+        </div>
+        
+    </header>
+     <canvas id="game" width="620" height="620" ></canvas>
+      
+     
  </body>
 </html>

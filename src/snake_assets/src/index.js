@@ -1,7 +1,17 @@
 import { snake } from "../../declarations/snake";
 
+
 const canvas=document.getElementById('game');
 const ctx=canvas.getContext('2d');
+
+var background = new Image();
+background.src = "./favicon.ico";
+
+// Make sure the image is loaded first otherwise nothing will draw.
+background.onload = function(){
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(background,400,400);   
+}
 //increase snake size 
 class snakePart{
 constructor(x, y){
@@ -11,16 +21,17 @@ constructor(x, y){
 
 }
 
-let speed=7;
-let tileCount=20; 
+let speed=5;
+let tileCount=25; 
 
 let tileSize=canvas.clientWidth/tileCount-2;
 let headX=10;
 let headY=10;
-
+console.log(canvas.clientWidth);
+console.log(tileSize);
 // array for snake parts
 const snakeParts=[];
-let tailLength=2;
+let tailLength=0;
 
 //initialize the speed of snake
 let xvelocity=0;
@@ -42,6 +53,7 @@ function drawGame(){
         return;
     }
     clearScreen();
+    drawBG();
     drawSnake();
     drawApple();
   
@@ -54,18 +66,23 @@ function isGameOver(){
     let gameOver=false; 
     //check whether game has started
     if(yvelocity===0 && xvelocity===0){
+        //console.log("case 1");
         return false;
     }
     if(headX<0){//if snake hits left wall
+        //console.log("case 2");
         gameOver=true;
     }
     else if(headX===tileCount){//if snake hits right wall
+        //console.log("case 3");
         gameOver=true;
     }
     else if(headY<0){//if snake hits wall at the top
+        //console.log("case 4");
         gameOver=true;
     }
     else if(headY===tileCount){//if snake hits wall at the bottom
+        //console.log("case 5");
         gameOver=true;
     }
 
@@ -131,12 +148,15 @@ ctx.fillRect(0,0,canvas.clientWidth,canvas.clientHeight)// black color start fro
      
  }
  function drawApple(){
+    //console.log("being called");
      ctx.fillStyle="red";
+     
      ctx.fillRect(appleX*tileCount, appleY*tileCount, tileSize, tileSize)
  }
  // check for collision and change apple position
  function checkCollision(){
      if(appleX==headX && appleY==headY){
+        console.log("hey");
          appleX=Math.floor(Math.random()*tileCount);
          appleY=Math.floor(Math.random()*tileCount);
          tailLength++;
@@ -191,4 +211,11 @@ function reloadSnake(){
 }
 window.reloadSnake = reloadSnake;
 
+function drawBG(){
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(background,400,400);   
+}
+window.drawBG = drawBG;
+
  drawGame(); 
+ 
